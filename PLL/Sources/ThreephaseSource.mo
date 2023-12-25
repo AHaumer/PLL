@@ -11,11 +11,11 @@ block ThreephaseSource "Basic single phase signal source"
   parameter SI.Time t_f=0.3 "Frequency disturbance";
   parameter SI.Frequency df=1 "Frequency disturbance";
   parameter SI.Time t_A0=0.6 "Zero component disturbance";
-  parameter Real dA0=0.1 "Zero component disturbance";
+  parameter Real dA0=0.05 "Zero component disturbance";
   parameter SI.Time t_A1=0.4 "Amplitude disturbance";
   parameter Real dA1=0.5 "Amplitude disturbance";
   parameter SI.Time t_A2=0.5 "Negative sequenc disturbance";
-  parameter Real dA2=0.1 "Negative sequence disturbance";
+  parameter Real dA2=0.05 "Negative sequence disturbance";
 
   Modelica.Blocks.Interfaces.RealOutput w(unit="rad/s")
     "Estimated angular velocity"
