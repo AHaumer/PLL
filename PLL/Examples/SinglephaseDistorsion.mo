@@ -22,5 +22,11 @@ equation
   annotation (experiment(
       Interval=0.0001,
       Tolerance=1e-06,
-      __Dymola_Algorithm="Dassl"));
+      __Dymola_Algorithm="Dassl"), Documentation(info="<html>
+<p>
+Comparing the basic and the enhanced version of the single phase PLL acting on a distorted signal, 
+you may vary the parameter <code>lamda</code> of the enhanced block 
+0 &le; &lambda; &le; 20 which influences the adaptive control of the enclosed basic PLL. &lambda; = 0 switches off adaptive control.
+</p>
+</html>"));
 end SinglephaseDistorsion;

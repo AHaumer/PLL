@@ -56,5 +56,12 @@ equation
   annotation (experiment(
       Interval=1e-05,
       Tolerance=1e-06,
-      __Dymola_Algorithm="Dassl"));
+      __Dymola_Algorithm="Dassl"), Documentation(info="<html>
+<p>
+Here the enhance single phase PLL ist tested at the output voltages of a single phase PWM inverter.
+Note that there are distotions present at the outputs but keep in mind that normally 
+such a PWM inverter is used with a line inductor, the voltage to synchronize with is measured at the input of the line inductor 
+and this voltage contains less harmonics than the voltage directly at the input of the H-bridge.
+</p>
+</html>"));
 end SinglephaseInverter;
