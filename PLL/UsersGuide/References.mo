@@ -13,7 +13,8 @@ class References "References"
     <tr>
       <td>[Karimi-Ghartemani2014]</td>
       <td>Masoud Karimi-Ghartemani,
-        &quot;Enhanced phase-locked loop structures for power and energy applications&quot;,
+        &quot;<a href=\"https://onlinelibrary.wiley.com/doi/book/10.1002/9781118795187\">
+        Enhanced phase-locked loop structures for power and energy applications</a>&quot;,
         <em>IEEE Press</em> 2014, ISBN: 9781118795026.</td>
     </tr>
     <tr>
