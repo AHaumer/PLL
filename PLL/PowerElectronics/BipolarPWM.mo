@@ -1,5 +1,5 @@
 within PLL.PowerElectronics;
-block DoubleUnipolarPWM "Double Unipolar pulse width modulation"
+block BipolarPWM "Bipolar pulse width modulation"
   extends Modelica.Blocks.Interfaces.DiscreteBlock(final samplePeriod=1/fsw);
   parameter SI.Frequency fsw "Switching frequency";
   parameter Boolean useVariableVdc=false "use variavle Vdc";
@@ -80,4 +80,9 @@ equation
     annotation (Line(points={{-19,-80},{0,-80},{0,-62}}, color={0,0,127}));
   connect(zeroOrderHold2.y, division.u2) annotation (Line(points={{0,-39},{0,
           -20},{-50,-20},{-50,-6},{-42,-6}}, color={0,0,127}));
-end DoubleUnipolarPWM;
+  annotation (Documentation(info="<html>
+<p>
+This is a bipolar intersective pulse width modulation, used to fire the <a href=\"modelica://PLL.PowerElectronics.HBridge\">H-bridge</a>.
+</p>
+</html>"));
+end BipolarPWM;

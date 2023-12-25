@@ -52,4 +52,11 @@ equation
     annotation (Line(points={{-120,80},{-92,80}}, color={0,0,127}));
   connect(replicator2.y, product1.u1) annotation (Line(points={{-69,80},{60,80},
           {60,6},{68,6}}, color={0,0,127}));
+  annotation (Documentation(info="<html>
+<p>
+This block provides positive sequence, negative sequence or zero component at the output <code>y[3]</code> 
+according to the theory of symmetrical components (<a href=\"modelica://PLL.UsersGuide.References\">[Fortescue1918]</a>),
+given by the parameter <code>phaseShift[3]</code>.
+</p>
+</html>"));
 end SymmetricComponent;

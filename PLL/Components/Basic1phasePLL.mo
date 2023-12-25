@@ -98,4 +98,18 @@ equation
           -20}}, color={0,0,127}));
   connect(neg.y, product0.u2)
     annotation (Line(points={{-61,-20},{-74,-20},{-74,18}}, color={0,0,127}));
+  annotation (Documentation(info="<html>
+<p>
+This is the basic version of the single phase PLL. 
+Knowing the Amplitude of the input signal <code>u</code>, an adaptive PI-controller can be used 
+(like in the <a href=\"modelica://PLL.Components.Enhanced1phasePLL\">enhanced version of the single phase PLL</a>.
+</p>
+<p>
+The output <code>y[1]</code> is a cosine signal in phase with the input <code>u</code>, 
+the output <code>y[2]</code> is a sine signal 90&deg; phase shifted to <code>y[1]</code>.
+</p>
+<p>
+Problems: especially a double-frequency ripple on the estimated frequency resp. angular velocity &omega; = 2 &pi; f = <code>w</code>.
+</p>
+</html>"));
 end Basic1phasePLL;

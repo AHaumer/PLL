@@ -23,6 +23,13 @@ class References "References"
         Implementation and Design of PLL and Enhanced PLL Blocks</a>&quot;,
         <em>PSIM Tutorial</em> 2020.</td>
     </tr>
+    <tr>
+      <td>[Fortescue1918]</td>
+      <td>Charles L. Fortescue,
+        &quot;<a href=\"https://www.energyscienceforum.com/files/fortescue/methodofsymmetrical.pdf\">
+        Method of Symmetrical Co-Ordinates Applied to the Solution of Polyphase Networks</a>&quot;,
+        Presented at the <em>34<sup>th</sup> annual convention of the AIEE</em> (American Institute of Electrical Engineers) in Atlantic City, N.J. on June 28<sup>th</sup> 1918.</td>
+    </tr>
 </table>
 </html>"));
 end References;

@@ -91,4 +91,15 @@ equation
     annotation (Line(points={{-19,60},{-8,60}}, color={0,0,127}));
   connect(addOffset2.u, abs1.y)
     annotation (Line(points={{-22,-30},{-11,-30}}, color={0,0,127}));
+  annotation (Documentation(info="<html>
+<p>
+This is the enhanced version of the single phase PLL, based on the <a href=\"modelica://PLL.Components.Basic1phasePLL\">basic version of the single phase PLL</a>, 
+avoiding the mentioned double-frequency ripple on the estimated frequency.
+</p>
+<p>
+The output <code>y[1]</code> is a cosine signal in phase with the input <code>u</code>, 
+the output <code>y[2]</code> is a sine signal 90&deg; phase shifted to <code>y[1]</code>. 
+The output <code>y[3]</code> is a cosine signal in phase with the input <code>u</code> and the estimated amplitude, i.e. the fundamental harmonic.
+</p>
+</html>"));
 end Enhanced1phasePLL;

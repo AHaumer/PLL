@@ -8,8 +8,8 @@ model SinglephaseInverter "Single phase AC/DC inverter"
     annotation (Placement(transformation(extent={{-70,10},{-50,30}})));
   PowerElectronics.HBridge inverter
     annotation (Placement(transformation(extent={{-20,40},{0,60}})));
-  PowerElectronics.DoubleUnipolarPWM doubleUnipolarPWM(fsw=1e3, constantVdc=Vdc)
-    annotation (Placement(transformation(
+  PowerElectronics.BipolarPWM bipolarPWM(fsw=1e3, constantVdc=Vdc) annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-10,20})));
@@ -32,9 +32,9 @@ model SinglephaseInverter "Single phase AC/DC inverter"
     phi(fixed=true))
     annotation (Placement(transformation(extent={{60,0},{80,20}})));
 equation
-  connect(inverter.fire_p, doubleUnipolarPWM.fireL)
+  connect(inverter.fire_p, bipolarPWM.fireL)
     annotation (Line(points={{-16,38},{-16,31}}, color={255,0,255}));
-  connect(inverter.fire_n, doubleUnipolarPWM.fireR)
+  connect(inverter.fire_n, bipolarPWM.fireR)
     annotation (Line(points={{-4,38},{-4,31}}, color={255,0,255}));
   connect(constantVoltage.n, ground.p)
     annotation (Line(points={{-60,40},{-60,30}},   color={0,0,255}));
@@ -49,7 +49,7 @@ equation
           44},{10,40},{30,40}}, color={0,0,255}));
   connect(voltageSensor.v, harmonic.u)
     annotation (Line(points={{41,50},{58,50}}, color={0,0,127}));
-  connect(cosine.y, doubleUnipolarPWM.vRef)
+  connect(cosine.y, bipolarPWM.vRef)
     annotation (Line(points={{-29,-10},{-10,-10},{-10,8}}, color={0,0,127}));
   connect(voltageSensor.v, enhanced1phasePLL.u) annotation (Line(points={{41,50},
           {50,50},{50,10},{58,10}}, color={0,0,127}));

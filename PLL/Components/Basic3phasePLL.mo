@@ -100,4 +100,18 @@ equation
           110,-2.5}}, color={0,0,127}));
   connect(sin.y, y[2]) annotation (Line(points={{13,8},{70,8},{70,2.5},{110,2.5}},
         color={0,0,127}));
+  annotation (Documentation(info="<html>
+<p>
+The the basic version of the three phase PLL performs a Clarke and Park transformation on the inputs <code>u[1..3]</code>, 
+using the angle &theta; determined by the control loop.  
+The d- and the q-component are divided to obtain an amplitude of 1.
+Subsequnetly, the q-current is controlled to become 0, ie. determining the desired angle &theta; 
+as well as the frequency resp. angular velocity &omega; = 2 &pi; f = <code>w</code>.
+</p>
+<p>
+Problems: especially a double-frequency ripple on the estimated frequency under distorted conditions, 
+i.e. when the input signals contain not only a positive sequence but also a negative sequence and / or zero component. 
+For symmterical components, see <a href=\"modelica://PLL.UsersGuide.References\">[Fortescue1918]</a>.
+</p>
+</html>"));
 end Basic3phasePLL;

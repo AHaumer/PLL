@@ -109,5 +109,11 @@ equation
     experiment(
       Interval=0.0001,
       Tolerance=1e-06,
-      __Dymola_Algorithm="Dassl"));
+      __Dymola_Algorithm="Dassl"),
+    Documentation(info="<html>
+<p>
+This block allows to apply disturbances (steps) in frequency, amplitude and phase as well as 
+adding a negative sequence and/or a zero component to the three phase output signal <code>y[3]</code>.
+</p>
+</html>"));
 end ThreephaseSource;

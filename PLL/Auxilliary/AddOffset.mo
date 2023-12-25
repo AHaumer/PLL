@@ -12,6 +12,9 @@ equation
   y = gain*u + offset;
   annotation (
     Documentation(info="<html>
+<p>
+This block multiplies the input <code>u</code> with the <code>gain</code> and adds the <code>offset</code>.
+</p>
 </html>"),
     Icon(coordinateSystem(
         preserveAspectRatio=true,

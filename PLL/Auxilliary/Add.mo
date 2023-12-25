@@ -17,6 +17,9 @@ equation
   y = k1*u1 + k2*u2;
   annotation (
     Documentation(info="<html>
+<p>
+This block adds both inputs with a graphical layout as the <a href=\"modelica://Modelica.Blocks.Math.Feedback\">standard feedback block</a>.
+</p>
 </html>"),
     Icon(coordinateSystem(
         preserveAspectRatio=true,
