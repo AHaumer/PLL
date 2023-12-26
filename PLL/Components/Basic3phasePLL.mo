@@ -109,6 +109,11 @@ Subsequnetly, the q-current is controlled to become 0, ie. determining the desir
 as well as the frequency resp. angular velocity &omega; = 2 &pi; f = <code>w</code>.
 </p>
 <p>
+The output <code>y[1]</code> is a cosine signal in phase with the input <code>u</code>, 
+the output <code>y[2]</code> is a sine signal 90&deg; phase shifted to <code>y[1]</code>. 
+Result of the Clarke - Park - transformation can be inspected with <code>u<sub>0</sub></code>, <code>u<sub>d</sub></code> and <code>u<sub>q</sub></code>.
+</p>
+<p>
 Problems: especially a double-frequency ripple on the estimated frequency under distorted conditions, 
 i.e. when the input signals contain not only a positive sequence but also a negative sequence and / or zero component. 
 For symmterical components, see <a href=\"modelica://PLL.UsersGuide.References\">[Fortescue1918]</a>.

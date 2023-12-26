@@ -24,12 +24,30 @@ class References "References"
         Implementation and Design of PLL and Enhanced PLL Blocks</a>&quot;,
         <em>PSIM Tutorial</em> 2020.</td>
     </tr>
-    <tr>
+    <tr valign=bottom>
       <td>[Fortescue1918]</td>
-      <td>Charles L. Fortescue,
+      <td>Charles L. Fortescue, 
         &quot;<a href=\"https://www.energyscienceforum.com/files/fortescue/methodofsymmetrical.pdf\">
         Method of Symmetrical Co-Ordinates Applied to the Solution of Polyphase Networks</a>&quot;,
         Presented at the <em>34<sup>th</sup> annual convention of the AIEE</em> (American Institute of Electrical Engineers) in Atlantic City, N.J. on June 28<sup>th</sup> 1918.</td>
+    </tr>
+    <tr>
+      <td>[KovacsRacz1959]</td>
+      <td>K&aacute;roly P&aacute;l Kov&aacute;cs and Istv&aacute;n R&aacute;cz,
+        &quot;Transiente Vorg&auml;nge in Wechselstrommaschinen&quot; (in German),
+        <em>Verlag der Ungarischen Akademie der Wissenschaften</em>, Budapest 1959.</td>
+    </tr>
+    <tr>
+      <td>[Clarke1943]</td>
+      <td>Edith Clarke,
+        &quot;Circuit Analysis of AC Power Systems - Vol. I&quot;,
+        <em>J. Wiley & Sons</em>, New York 1943.</td>
+    </tr>
+    <tr>
+      <td>[Park1929]</td>
+      <td>Robert H. Park,
+        &quot;Two Reaction Theory of Synchronous Machines generalized Method of Analysis - Part I&quot;,
+        <em>AIEE Transactions</em>, Vol. 48 (1929), pp. 716-727.</td>
     </tr>
 </table>
 </html>"));
