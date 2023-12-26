@@ -20,20 +20,22 @@ block Basic3phasePLL "Basic version of three phase phase-locked loop"
     "Estimated angle"
     annotation (Placement(transformation(extent={{100,-70},{120,-50}})));
   Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor(m=m)
-    annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-90,30})));
   Modelica.Electrical.Machines.SpacePhasors.Blocks.Rotator rotator
-    annotation (Placement(transformation(extent={{-40,70},{-20,90}})));
+    annotation (Placement(transformation(extent={{-30,70},{-10,90}})));
   Modelica.Blocks.Math.Division division
-    annotation (Placement(transformation(extent={{20,70},{40,90}})));
+    annotation (Placement(transformation(extent={{28,70},{48,90}})));
   Modelica.Blocks.Math.Abs abs1 annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=270,
-        origin={-10,50})));
+        origin={0,50})));
   Auxilliary.AddOffset addOffset(offset=epsilon*A0) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
-        origin={10,50})));
+        origin={20,50})));
   Modelica.Blocks.Continuous.Integrator integrator1(k=ki, initType=Modelica.Blocks.Types.Init.InitialOutput)
     annotation (Placement(transformation(extent={{-90,-70},{-70,-50}})));
   Auxilliary.AddOffset addOffset1(offset=2*pi*f0)
@@ -47,9 +49,9 @@ block Basic3phasePLL "Basic version of three phase phase-locked loop"
   Modelica.Blocks.Continuous.Integrator integrator2(k=1, initType=Modelica.Blocks.Types.Init.NoInit)
     annotation (Placement(transformation(extent={{50,-70},{70,-50}})));
   Modelica.Blocks.Math.Sin sin
-    annotation (Placement(transformation(extent={{-8,-2},{12,18}})));
+    annotation (Placement(transformation(extent={{0,-2},{20,18}})));
   Modelica.Blocks.Math.Cos cos
-    annotation (Placement(transformation(extent={{-8,-20},{12,0}})));
+    annotation (Placement(transformation(extent={{0,-20},{20,0}})));
   Modelica.Blocks.Math.Product product1
     annotation (Placement(transformation(extent={{-50,-70},{-30,-50}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=1/(1 + lamda*abs(uq)/
@@ -57,18 +59,20 @@ block Basic3phasePLL "Basic version of three phase phase-locked loop"
     annotation (Placement(transformation(extent={{-90,-50},{-70,-30}})));
 equation
   connect(toSpacePhasor.y, rotator.u)
-    annotation (Line(points={{-59,80},{-42,80}}, color={0,0,127}));
-  connect(u, toSpacePhasor.u) annotation (Line(points={{-120,0},{-90,0},{-90,80},
-          {-82,80}}, color={0,0,127}));
-  connect(abs1.y, addOffset.u) annotation (Line(points={{-10,39},{-10,30},{10,30},
-          {10,42}}, color={0,0,127}));
+    annotation (Line(points={{-90,41},{-90,80},{-32,80}},
+                                                 color={0,0,127}));
+  connect(u, toSpacePhasor.u) annotation (Line(points={{-120,0},{-90,0},{-90,18}},
+                     color={0,0,127}));
+  connect(abs1.y, addOffset.u) annotation (Line(points={{0,39},{0,30},{20,30},{
+          20,42}},  color={0,0,127}));
   connect(addOffset.y, division.u2)
-    annotation (Line(points={{10,59},{10,74},{18,74}}, color={0,0,127}));
-  connect(division.y, integrator1.u) annotation (Line(points={{41,80},{52,80},{52,
-          -30},{-98,-30},{-98,-60},{-92,-60}}, color={0,0,127}));
+    annotation (Line(points={{20,59},{20,74},{26,74}}, color={0,0,127}));
+  connect(division.y, integrator1.u) annotation (Line(points={{49,80},{60,80},{
+          60,-30},{-98,-30},{-98,-60},{-92,-60}},
+                                               color={0,0,127}));
   connect(addOffset1.y, add2.u1)
     annotation (Line(points={{-1,-60},{22,-60}},  color={0,0,127}));
-  connect(division.y, gain.u) annotation (Line(points={{41,80},{52,80},{52,-30},
+  connect(division.y, gain.u) annotation (Line(points={{49,80},{60,80},{60,-30},
           {-98,-30},{-98,-80},{-22,-80}}, color={0,0,127}));
   connect(gain.y, add2.u2)
     annotation (Line(points={{1,-80},{30,-80},{30,-68}},  color={0,0,127}));
@@ -76,15 +80,16 @@ equation
     annotation (Line(points={{39,-60},{48,-60}}, color={0,0,127}));
   connect(integrator2.y, phi)
     annotation (Line(points={{71,-60},{110,-60}}, color={0,0,127}));
-  connect(integrator2.y, rotator.angle) annotation (Line(points={{71,-60},{80,-60},
-          {80,20},{-30,20},{-30,68}}, color={0,0,127}));
+  connect(integrator2.y, rotator.angle) annotation (Line(points={{71,-60},{80,
+          -60},{80,-24},{-20,-24},{-20,68}},
+                                      color={0,0,127}));
   connect(addOffset1.y, w) annotation (Line(points={{-1,-60},{10,-60},{10,-40},{
           90,-40},{90,60},{110,60}},
                                   color={0,0,127}));
   connect(integrator2.y, sin.u) annotation (Line(points={{71,-60},{80,-60},{80,
-          20},{-30,20},{-30,8},{-10,8}},                 color={0,0,127}));
+          -24},{-20,-24},{-20,8},{-2,8}},                color={0,0,127}));
   connect(integrator2.y, cos.u) annotation (Line(points={{71,-60},{80,-60},{80,
-          20},{-30,20},{-30,-10},{-10,-10}},
+          -24},{-20,-24},{-20,-10},{-2,-10}},
                                          color={0,0,127}));
   connect(integrator1.y, product1.u2) annotation (Line(points={{-69,-60},{-60,-60},
           {-60,-66},{-52,-66}}, color={0,0,127}));
@@ -92,13 +97,13 @@ equation
           -40},{-60,-54},{-52,-54}}, color={0,0,127}));
   connect(product1.y, addOffset1.u)
     annotation (Line(points={{-29,-60},{-18,-60}}, color={0,0,127}));
-  connect(rotator.y[2], division.u1) annotation (Line(points={{-19,80},{10,80},
-          {10,86},{18,86}}, color={0,0,127}));
+  connect(rotator.y[2], division.u1) annotation (Line(points={{-9,80},{20,80},{
+          20,86},{26,86}},  color={0,0,127}));
   connect(rotator.y[1], abs1.u)
-    annotation (Line(points={{-19,80},{-10,80},{-10,62}}, color={0,0,127}));
-  connect(cos.y, y[1]) annotation (Line(points={{13,-10},{70,-10},{70,-2.5},{
+    annotation (Line(points={{-9,80},{0,80},{0,62}},      color={0,0,127}));
+  connect(cos.y, y[1]) annotation (Line(points={{21,-10},{70,-10},{70,-2.5},{
           110,-2.5}}, color={0,0,127}));
-  connect(sin.y, y[2]) annotation (Line(points={{13,8},{70,8},{70,2.5},{110,2.5}},
+  connect(sin.y, y[2]) annotation (Line(points={{21,8},{70,8},{70,2.5},{110,2.5}},
         color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>

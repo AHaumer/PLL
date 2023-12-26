@@ -24,6 +24,12 @@ class References "References"
         Implementation and Design of PLL and Enhanced PLL Blocks</a>&quot;,
         <em>PSIM Tutorial</em> 2020.</td>
     </tr>
+    <tr>
+      <td>[Oestrem2006]</td>
+      <td>T. &Oslash;strem, W. Sulkowski, L. E. Norum, and C. Wang,
+        &quot;Grid connected photovoltaic (pv) inverter with robust phase-locked loop (pll)&quot;,
+        <em>IEEE PES Transmission and Distribution Conference and Exposition Latin America</em> 2006.</td>
+    </tr>
     <tr valign=bottom>
       <td>[Fortescue1918]</td>
       <td>Charles L. Fortescue, 

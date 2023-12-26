@@ -3,9 +3,10 @@ class Concept "Concept"
   extends Modelica.Icons.Information;
   annotation (preferredView="info",Documentation(info="<html>
 <p>
-The phase locked loops demonstrated in this library are intended to be used in power eletctronic inverters to synchronize with grid voltage, 
-such as feeding power from solar panels, windmills or electrical energy storages like batteries to the grid, but also active line modules of frequency inverters for electric drives.
-They are based on the publications of <a href=\"modelica://PLL.UsersGuide.References\">Masoud Karimi-Ghartemani</a> with some modifications described as follows.
+The phase locked loops (PLL) demonstrated in this library are intended to be used in power electronic inverters to synchronize with grid voltage, 
+such as feeding power from solar panels, windmills or electrical energy storages like batteries to the grid, but also active line modules of frequency inverters for electric drives. 
+Problems arise when the grid voltage - either single phase or three phase - is distorted or imbalanced. 
+The PLLs are based on the publications of <a href=\"modelica://PLL.UsersGuide.References\">Masoud Karimi-Ghartemani</a> with some modifications described as follows.
 </p>
 <p>
 In this library the representation of signals (i.e. AC voltages) is based on cosine: <code>u(t) = &ucirc;&sdot;cos(2&pi;f&sdot;t + &phi;)</code> 
