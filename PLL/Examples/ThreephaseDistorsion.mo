@@ -8,10 +8,14 @@ model ThreephaseDistorsion
     A0=threephaseSource.A1,
     f0=threephaseSource.f0,
     phi(fixed=true))
-    annotation (Placement(transformation(extent={{12,10},{32,30}})));
+    annotation (Placement(transformation(extent={{40,10},{60,30}})));
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor
+    annotation (Placement(transformation(extent={{10,10},{30,30}})));
 equation
-  connect(threephaseSource.y, basic3phasePLL.u)
-    annotation (Line(points={{-9,0},{0,0},{0,20},{10,20}}, color={0,0,127}));
+  connect(threephaseSource.y, toSpacePhasor.u)
+    annotation (Line(points={{-9,0},{0,0},{0,20},{8,20}}, color={0,0,127}));
+  connect(toSpacePhasor.y, basic3phasePLL.u)
+    annotation (Line(points={{31,20},{38,20}}, color={0,0,127}));
   annotation (experiment(
       Interval=0.0001,
       Tolerance=1e-06,
