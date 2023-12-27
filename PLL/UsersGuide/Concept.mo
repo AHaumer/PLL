@@ -5,6 +5,7 @@ class Concept "Concept"
 <p>
 The phase locked loops (PLL) demonstrated in this library are intended to be used in power electronic inverters to synchronize with grid voltage, 
 such as feeding power from solar panels, windmills or electrical energy storages like batteries to the grid, but also active line modules of frequency inverters for electric drives. 
+Another application is the determination of rotor angle of a permanent magnet excited synchronous machine using a sin-cos-resolver. 
 Problems arise when the grid voltage - either single phase or three phase - is distorted or imbalanced. 
 The PLLs are based on the publications of <a href=\"modelica://PLL.UsersGuide.References\">Masoud Karimi-Ghartemani</a> with some modifications described as follows.
 </p>
