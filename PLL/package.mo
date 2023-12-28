@@ -5,7 +5,7 @@ package PLL "Phase Locked Loops for inverter applications"
   import Modelica.Electrical.Polyphase.Functions.symmetricOrientation;
 
   annotation (preferredView="info",
-    version="1.0.0", versionDate="2023-12-27", uses(Modelica(version="4.0.0")),
+    version="1.0.0", versionDate="2023-12-28", uses(Modelica(version="4.0.0")),
     Documentation(info="<html>
 <p>
 This is a library dealing with phase locked loop algorithms for power applications based on the publications of Masoud Karimi-Ghartemani.

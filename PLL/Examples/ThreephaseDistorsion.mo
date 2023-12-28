@@ -5,17 +5,17 @@ model ThreephaseDistorsion
   Sources.ThreephaseSource  threephaseSource( f0=60)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Components.Basic3phasePLL basic3phasePLL(
+    theta(fixed=true),
     A0=threephaseSource.A1,
-    f0=threephaseSource.f0,
-    phi(fixed=true))
-    annotation (Placement(transformation(extent={{40,10},{60,30}})));
+    f0=threephaseSource.f0)
+    annotation (Placement(transformation(extent={{50,10},{70,30}})));
   Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor
     annotation (Placement(transformation(extent={{10,10},{30,30}})));
 equation
   connect(threephaseSource.y, toSpacePhasor.u)
     annotation (Line(points={{-9,0},{0,0},{0,20},{8,20}}, color={0,0,127}));
   connect(toSpacePhasor.y, basic3phasePLL.u)
-    annotation (Line(points={{31,20},{38,20}}, color={0,0,127}));
+    annotation (Line(points={{31,20},{48,20}}, color={0,0,127}));
   annotation (experiment(
       Interval=0.0001,
       Tolerance=1e-06,

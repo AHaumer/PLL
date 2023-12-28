@@ -1,6 +1,7 @@
 within PLL.Components;
 block Basic1phasePLL "Basic version of single phase phase-locked loop"
   extends Modelica.Blocks.Interfaces.SIMO(final nout=2);
+  extends Interfaces.w_theta;
   parameter Real A0=1 "Rated amplitude of input";
   parameter SI.Frequency f0=50 "Rated frequency";
   parameter SI.AngularVelocity wn=0.1*2*pi*f0 "Natural angular velocity";
@@ -10,12 +11,6 @@ block Basic1phasePLL "Basic version of single phase phase-locked loop"
   parameter Boolean useAdaption=false "Use adaptive integrator";
   parameter Real constantAdaption=1 "Constant adaption factor"
     annotation(Dialog(enable=not useAdaption));
-  Modelica.Blocks.Interfaces.RealOutput w(unit="rad/s")
-    "Estimated angular velocity"
-    annotation (Placement(transformation(extent={{100,50},{120,70}})));
-  Modelica.Blocks.Interfaces.RealOutput phi(unit="rad", start=0)
-    "Estimated angle"
-    annotation (Placement(transformation(extent={{100,-70},{120,-50}})));
   Modelica.Blocks.Math.Product product0
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
@@ -68,16 +63,12 @@ equation
     annotation (Line(points={{39,60},{60,60},{60,48}}, color={0,0,127}));
   connect(gain.y, add2.u2)
     annotation (Line(points={{41,40},{52,40}},         color={0,0,127}));
-  connect(addOffset.y, w)
-    annotation (Line(points={{39,60},{110,60}}, color={0,0,127}));
   connect(add2.y, integrator2.u)
     annotation (Line(points={{60,31},{60,20},{-30,20},{-30,-60},{-22,-60}},
                                                      color={0,0,127}));
   connect(integrator2.y, cos.u) annotation (Line(points={{1,-60},{10,-60},{10,
           -40},{18,-40}},
                    color={0,0,127}));
-  connect(integrator2.y, phi)
-    annotation (Line(points={{1,-60},{110,-60}}, color={0,0,127}));
   connect(integrator2.y, sin.u) annotation (Line(points={{1,-60},{10,-60},{10,0},
           {18,0}},        color={0,0,127}));
   connect(adaption, adaption1)
@@ -98,6 +89,10 @@ equation
           -20}}, color={0,0,127}));
   connect(neg.y, product0.u2)
     annotation (Line(points={{-61,-20},{-74,-20},{-74,18}}, color={0,0,127}));
+  connect(addOffset.y, w)
+    annotation (Line(points={{39,60},{110,60}}, color={0,0,127}));
+  connect(integrator2.y, theta)
+    annotation (Line(points={{1,-60},{110,-60}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 This is the basic version of the single phase PLL. 

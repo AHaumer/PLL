@@ -1,6 +1,7 @@
 within PLL.Components;
 block Enhanced1phasePLL "Enhanced single phase phase locked loop"
   extends Modelica.Blocks.Interfaces.SIMO(final nout=3);
+  extends Interfaces.w_theta;
   parameter Real A0=1 "Rated amplitude of input";
   parameter SI.Frequency f0=50 "Rated frequency";
   parameter Real zeta1(min=0.25, max=0.75)=0.5 "First damping ratio";
@@ -12,12 +13,6 @@ block Enhanced1phasePLL "Enhanced single phase phase locked loop"
   parameter Real lamda(min=0, max=20)=0 "Factor for adaptive integrator";
   Real e=feedback.y "Control error";
   Real A=addOffset1.y "Estimated amplitude";
-  Modelica.Blocks.Interfaces.RealOutput w(unit="rad/s")
-    "Estimated angular velocity"
-    annotation (Placement(transformation(extent={{100,50},{120,70}})));
-  Modelica.Blocks.Interfaces.RealOutput phi(unit="rad", start=0)
-    "Estimated angle"
-    annotation (Placement(transformation(extent={{100,-70},{120,-50}})));
   Basic1phasePLL base1phasePLL(
     A0=A0,
     f0=f0,
@@ -63,12 +58,6 @@ equation
     annotation (Line(points={{-49,60},{-42,60}}, color={0,0,127}));
   connect(addOffset1.y, product2.u1) annotation (Line(points={{9,60},{20,60},{
           20,66},{38,66}}, color={0,0,127}));
-  connect(base1phasePLL.w, w) annotation (Line(points={{11,6},{30,6},{30,20},{
-          90,20},{90,60},{110,60}},
-                color={0,0,127}));
-  connect(base1phasePLL.phi, phi) annotation (Line(points={{11,-6},{30,-6},{30,
-          -20},{90,-20},{90,-60},{110,-60}},
-                      color={0,0,127}));
   connect(product2.y, feedback.u2) annotation (Line(points={{61,60},{70,60},{70,
           30},{-80,30},{-80,8}}, color={0,0,127}));
   connect(feedback.y, product1.u1) annotation (Line(points={{-71,0},{-60,0},{-60,
@@ -98,6 +87,10 @@ equation
   connect(base1phasePLL.y[1], product1.u2) annotation (Line(points={{11,
           -0.333333},{80,-0.333333},{80,40},{-80,40},{-80,54},{-72,54}}, color=
           {0,0,127}));
+  connect(base1phasePLL.w, w) annotation (Line(points={{11,6},{90,6},{90,60},{
+          110,60}}, color={0,0,127}));
+  connect(base1phasePLL.theta, theta) annotation (Line(points={{11,-6},{80,-6},
+          {80,-60},{110,-60}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
 This is the enhanced version of the single phase PLL, based on the <a href=\"modelica://PLL.Components.Basic1phasePLL\">basic version of the single phase PLL</a>, 

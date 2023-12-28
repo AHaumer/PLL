@@ -1,5 +1,5 @@
 within PLL;
-package Components
+package Components "Basic and enhanced versions of PLLs"
   extends Modelica.Icons.VariantsPackage;
   annotation (Documentation(info="<html>
 <p>

@@ -1,7 +1,7 @@
 within PLL.Components;
 block Basic3phasePLL "Basic version of three phase phase-locked loop"
   extends Modelica.Blocks.Interfaces.MIMO(final nin=2, final nout=2);
-  final parameter Integer m=3 "Number of phases";
+  extends Interfaces.w_theta;
   parameter Real A0=1 "Rated amplitude of input";
   parameter SI.Frequency f0=50 "Rated frequency";
   parameter SI.AngularVelocity wn=0.25*2*pi*f0 "Natural angular velocity";
@@ -10,12 +10,6 @@ block Basic3phasePLL "Basic version of three phase phase-locked loop"
   parameter Real ki=wn^2 "Integral gain";
   parameter Real epsilon=0.001 "Avoid division by 0";
   parameter Real lamda(min=0, max=20)=0 "Factor for adaptive integrator";
-  Modelica.Blocks.Interfaces.RealOutput w(unit="rad/s")
-    "Estimated angular velocity"
-    annotation (Placement(transformation(extent={{100,50},{120,70}})));
-  Modelica.Blocks.Interfaces.RealOutput phi(unit="rad", start=0)
-    "Estimated angle"
-    annotation (Placement(transformation(extent={{100,-70},{120,-50}})));
   Modelica.Electrical.Machines.SpacePhasors.Blocks.Rotator rotator
     annotation (Placement(transformation(extent={{-40,-70},{-20,-90}})));
   Modelica.Blocks.Math.Division division
@@ -83,10 +77,6 @@ equation
     annotation (Line(points={{10,-69},{10,-74},{18,-74}}, color={0,0,127}));
   connect(addOffset1.y, add2.u1)
     annotation (Line(points={{9,60},{32,60}}, color={0,0,127}));
-  connect(addOffset1.y, w) annotation (Line(points={{9,60},{20,60},{20,80},{90,80},
-          {90,60},{110,60}}, color={0,0,127}));
-  connect(integrator2.y, phi)
-    annotation (Line(points={{80,29},{80,-60},{110,-60}}, color={0,0,127}));
   connect(u, rotator.u) annotation (Line(points={{-120,0},{-90,0},{-90,-80},{-42,
           -80}}, color={0,0,127}));
   connect(division.y, gain.u) annotation (Line(points={{41,-80},{50,-80},{50,-30},
@@ -101,12 +91,16 @@ equation
           {-10,-10},{-2,-10}}, color={0,0,127}));
   connect(rotator.y, udq)
     annotation (Line(points={{-19,-80},{0,-80},{0,-110}}, color={0,0,127}));
+  connect(addOffset1.y, w) annotation (Line(points={{9,60},{20,60},{20,68},{90,
+          68},{90,60},{110,60}}, color={0,0,127}));
+  connect(integrator2.y, theta)
+    annotation (Line(points={{80,29},{80,-60},{110,-60}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p>
-The the basic version of the three phase PLL assumes that a Clarke transformation is performed, then feeding the &alpha;- &beta;-component to this block. 
+The basic version of the three phase PLL assumes that a Clarke transformation is performed, then feeding the &alpha;- and &beta;-component to this block. 
 Here a Park transformation on the inputs <code>u[1..2]</code> is applied, using the angle &theta; determined by the control loop.  
 The d- and the q-component are divided by the estimated amplitude to obtain an amplitude of 1.
-Subsequnetly, the q-current is controlled to become 0, ie. determining the desired angle &theta; 
+Subsequently, the q-component is controlled to become 0, ie. determining the desired angle &theta; 
 as well as the frequency resp. angular velocity &omega; = 2 &pi; f = <code>w</code>.
 </p>
 <p>
