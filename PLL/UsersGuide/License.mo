@@ -5,7 +5,7 @@ class License "Copyright and License"
     Documentation(info="<html>
 <h4>Copyright and License (BSD 3-Clause)</h4>
 <p>
-&copy; 2023 <a HREF=\"https://www.oth-regensburg.de/en/faculties/electrical-engineering-and-information-technology.html\">OTH Regensburg, Faculty of Electrical Engineering and Information Technology</a>, Anton Haumer.
+&copy; 2025 <a HREF=\"https://www.oth-regensburg.de/en/faculties/electrical-engineering-and-information-technology.html\">OTH Regensburg, Faculty of Electrical Engineering and Information Technology</a>, Anton Haumer.
 </p>
 <p>
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
