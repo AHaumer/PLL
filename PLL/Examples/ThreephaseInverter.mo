@@ -58,7 +58,7 @@ model ThreephaseInverter "Three phase AC/DC inverter"
     theta(fixed=true),
     A0=sqrt(2)*Vac/2,
     f0=fRef) annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  Auxilliary.Harm2traj harm2traj
+  Auxilliary.Harm2traj harm2traj(f=fRef)
     annotation (Placement(transformation(extent={{70,30},{90,50}})));
 equation
   connect(constantVoltage.n, ground.p)
