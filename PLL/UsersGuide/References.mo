@@ -7,7 +7,8 @@ class References "References"
     <tr>
       <td>[Karimi-Ghartemani2013]</td>
       <td>Masoud Karimi-Ghartemani et al.,
-        &quot;A New Phase-Locked Loop System for Three-Phase Applications&quot;,
+        &quot;<a href=\"https://ieeexplore.ieee.org/document/6237534\">
+        A New Phase-Locked Loop System for Three-Phase Applications</a>&quot;,
         <em>IEEE Transactions on Power Electronics</em>, Vol.28, Issue 3, March 2013, pp.1208-1218, DOI: 10.1109/TPEL.2012.2207967</td>
     </tr>
     <tr>
@@ -27,7 +28,8 @@ class References "References"
     <tr>
       <td>[Oestrem2006]</td>
       <td>T. &Oslash;strem, W. Sulkowski, L. E. Norum, and C. Wang,
-        &quot;Grid connected photovoltaic (pv) inverter with robust phase-locked loop (pll)&quot;,
+        &quot;<a href=\"https://ieeexplore.ieee.org/document/4104665\">
+        Grid connected photovoltaic (pv) inverter with robust phase-locked loop (pll)</a>&quot;,
         <em>IEEE PES Transmission and Distribution Conference and Exposition Latin America</em> 2006.</td>
     </tr>
     <tr valign=bottom>
@@ -40,7 +42,8 @@ class References "References"
     <tr>
       <td>[KovacsRacz1959]</td>
       <td>K&aacute;roly P&aacute;l Kov&aacute;cs and Istv&aacute;n R&aacute;cz,
-        &quot;Transiente Vorg&auml;nge in Wechselstrommaschinen&quot; (in German),
+        &quot;<a href=\"https://search.worldcat.org/de/title/transiente-vorgange-in-wechselstrommaschinen/oclc/7878340\">
+        Transiente Vorg&auml;nge in Wechselstrommaschinen</a>&quot; (in German),
         <em>Verlag der Ungarischen Akademie der Wissenschaften</em>, Budapest 1959.</td>
     </tr>
     <tr>
@@ -52,7 +55,8 @@ class References "References"
     <tr>
       <td>[Park1929]</td>
       <td>Robert H. Park,
-        &quot;Two Reaction Theory of Synchronous Machines generalized Method of Analysis - Part I&quot;,
+        &quot;<a href=\"https://ieeexplore.ieee.org/document/5055275\">
+        Two Reaction Theory of Synchronous Machines generalized Method of Analysis - Part I</a>&quot;,
         <em>AIEE Transactions</em>, Vol. 48 (1929), pp. 716-727.</td>
     </tr>
 </table>
