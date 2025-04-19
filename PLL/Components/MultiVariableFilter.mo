@@ -3,7 +3,7 @@ block MultiVariableFilter
   extends Modelica.Blocks.Interfaces.MIMO(final nin=2, final nout=2);
   parameter SI.Angle phi0=0 "Initial phase angle of voltage";
   parameter SI.Frequency fB=2.5 "Bandwidth";
-  parameter Boolean useOmegaInput=true "Use an input for actual omega?";
+  parameter Boolean useOmegaInput=false "Use an input for actual omega?";
   parameter SI.Frequency fN=50 "Nominal frequency"
     annotation(Dialog(enable=not useOmegaInput));
   Modelica.Blocks.Math.Feedback feedback[2]
@@ -24,14 +24,14 @@ block MultiVariableFilter
     final extract={2,1})
     annotation (Placement(transformation(extent={{20,-40},{0,-20}})));
   Modelica.Blocks.Routing.Replicator replicator(nout=2)
-    annotation (Placement(transformation(extent={{40,-70},{60,-50}})));
+    annotation (Placement(transformation(extent={{20,-90},{40,-70}})));
   Modelica.Blocks.Interfaces.RealInput omega if useOmegaInput
     "Connector of Real input signals"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},
         rotation=90,
-        origin={0,-100})));
+        origin={0,-120})));
   Modelica.Blocks.Sources.Constant const(k=2*pi*fN) if not useOmegaInput
-    annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
+    annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
 equation
   connect(u, feedback.u1) annotation (Line(
       points={{-120,0},{-78,0}},
@@ -69,15 +69,32 @@ equation
       points={{-1,-30},{-10,-30},{-10,-6},{-2,-6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(replicator.y, product.u2) annotation (Line(points={{61,-60},{66,-60},{
-          66,-44},{62,-44},{62,-36}}, color={0,0,127}));
+  connect(replicator.y, product.u2) annotation (Line(points={{41,-80},{70,-80},{
+          70,-36},{62,-36}},          color={0,0,127}));
   connect(const.y, replicator.u)
-    annotation (Line(points={{-19,-60},{38,-60}}, color={0,0,127}));
+    annotation (Line(points={{-19,-80},{18,-80}}, color={0,0,127}));
   connect(omega, replicator.u)
-    annotation (Line(points={{0,-100},{0,-60},{38,-60}}, color={0,0,127}));
+    annotation (Line(points={{0,-120},{0,-80},{18,-80}}, color={0,0,127}));
   annotation (                   Documentation(info="<html>
 <p>
 This is a multi-variable band filter as described in <a href=\"modelica://PLL.UsersGuide.References\">[Oestrem2006]</a>, 
 acting on &alpha;- and &beta;-components.
-</html>"));
+</html>"), Icon(graphics={
+      Polygon(lineColor={192,192,192},
+        fillColor={192,192,192},
+        fillPattern=FillPattern.Solid,
+        points={{-80,90},{-88,68},{-72,68},{-80,90}}),
+      Line(points={{-80,78},{-80,-90}},
+        color={192,192,192}),
+      Line(points={{-90,-80},{82,-80}},
+        color={192,192,192}),
+      Polygon(lineColor={192,192,192},
+        fillColor={192,192,192},
+        fillPattern=FillPattern.Solid,
+        points={{90,-80},{68,-72},{68,-88},{90,-80}}),
+      Line(origin={3.333,-8.667},   points = {{-83.333,34.667},{24.667,34.667},{42.667,-71.333}}, color = {0,0,127}, smooth = Smooth.Bezier),
+      Rectangle(lineColor={160,160,164},
+        fillColor={255,255,255},
+        fillPattern=FillPattern.Backward,
+        extent={{-80,-80},{22,8}})}));
 end MultiVariableFilter;

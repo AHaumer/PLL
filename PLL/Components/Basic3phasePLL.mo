@@ -2,6 +2,11 @@ within PLL.Components;
 block Basic3phasePLL "Basic version of three phase phase-locked loop"
   extends Modelica.Blocks.Interfaces.MIMO(final nin=2, final nout=2);
   extends Interfaces.w_theta;
+  Modelica.Blocks.Interfaces.RealOutput udq[2] "ud, uq" annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={0,-110})));
   parameter Real A0=1 "Rated amplitude of input";
   parameter SI.Frequency f0=50 "Rated frequency";
   parameter SI.AngularVelocity wn=0.25*2*pi*f0 "Natural angular velocity";
@@ -46,11 +51,7 @@ block Basic3phasePLL "Basic version of three phase phase-locked loop"
   Modelica.Blocks.Sources.RealExpression realExpression(y=1/(1 + lamda*abs(udq[
         2])/(abs(udq[1]) + epsilon*A0)))
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
-  Modelica.Blocks.Interfaces.RealOutput udq[2] "ud, uq" annotation (Placement(
-        transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={0,-110})));
+
 equation
   connect(gain.y, add2.u2)
     annotation (Line(points={{11,40},{40,40},{40,52}},    color={0,0,127}));

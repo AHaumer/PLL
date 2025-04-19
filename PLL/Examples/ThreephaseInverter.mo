@@ -4,8 +4,7 @@ model ThreephaseInverter "Three phase AC/DC inverter"
   constant Integer m=3 "Number if phases";
   parameter SI.Frequency fac=50 "AC nominal frequency";
   parameter SI.Voltage Vac=100 "AC nominal voltage rms to neutral";
-  parameter SI.Frequency fRef=50 "Reference frequency";
-  parameter SI.Voltage VRef=sqrt(2)*Vac*fRef/fac "Reference voltage amplitude to neutral";
+  parameter SI.Frequency fRef=50 "AC actual frequency";
   parameter SI.Voltage VMax=1/sqrt(3)*Vdc "Maximum ac voltage amplitude to neutral";
   parameter SI.Voltage Vdc=sqrt(6)*Vac "DC voltage";
   parameter SI.Frequency fsw=5e3 "Switching frequency";
@@ -27,10 +26,6 @@ model ThreephaseInverter "Three phase AC/DC inverter"
         extent={{-10,10},{10,-10}},
         rotation=270,
         origin={-90,50})));
-  Modelica.Blocks.Sources.Cosine cosine(amplitude=VRef, f=fRef)
-    annotation (Placement(transformation(extent={{-80,-30},{-60,-10}})));
-  Modelica.Blocks.Sources.Sine   sine(amplitude=VRef, f=fRef)
-    annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
   Modelica.Electrical.Polyphase.Basic.Resistor resistor(m=m, R=fill(1e3, m))
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -58,8 +53,30 @@ model ThreephaseInverter "Three phase AC/DC inverter"
     theta(fixed=true),
     A0=sqrt(2)*Vac/2,
     f0=fRef) annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  Auxilliary.Harm2traj harm2traj(f=fRef)
-    annotation (Placement(transformation(extent={{70,30},{90,50}})));
+  Components.MultiVariableFilter multiVariableFilter(fN=fRef) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={30,-20})));
+  Components.SrfPLL srfPLL(
+    theta(fixed=true),
+    A0=sqrt(2)*Vac/2,
+    wE=2*pi*fRef)
+    annotation (Placement(transformation(extent={{40,-50},{60,-30}})));
+  Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasorSource
+    annotation (Placement(transformation(
+        extent={{-10,10},{10,-10}},
+        rotation=90,
+        origin={-40,-20})));
+  Modelica.Electrical.Machines.Utilities.VfController vfController(
+    VNominal=Vac,
+    fNominal=fac,
+    BasePhase=pi/2)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-40,-50})));
+  Modelica.Blocks.Sources.Constant const(k=fRef)
+    annotation (Placement(transformation(extent={{-70,-80},{-50,-60}})));
 equation
   connect(constantVoltage.n, ground.p)
     annotation (Line(points={{-90,40},{-90,0}},    color={0,0,255}));
@@ -74,12 +91,6 @@ equation
   connect(inverter.fire_n, svPWM.fire_n)
     annotation (Line(points={{-34,38},{-34,31}},
                                                color={255,0,255}));
-  connect(cosine.y, svPWM.u[1])
-    annotation (Line(points={{-59,-20},{-39.5,-20},{-39.5,8}},
-                                                             color={0,0,127}));
-  connect(sine.y, svPWM.u[2]) annotation (Line(points={{-59,-50},{-40.5,-50},{
-          -40.5,8}},
-               color={0,0,127}));
   connect(inverter.ac, resistor.plug_p)
     annotation (Line(points={{-30,50},{-10,50}},color={0,0,255}));
   connect(resistor.plug_n, star.plug_p)
@@ -100,10 +111,16 @@ equation
     annotation (Line(points={{21,40},{30,40},{30,32}}, color={0,0,127}));
   connect(toSpacePhasor.y, basic3phasePLL.u)
     annotation (Line(points={{30,9},{30,0},{38,0}}, color={0,0,127}));
-  connect(harmonic.y_rms, harm2traj.u_rms)
-    annotation (Line(points={{61,46},{68,46}}, color={0,0,127}));
-  connect(harmonic.y_arg, harm2traj.u_arg)
-    annotation (Line(points={{61,34},{68,34}}, color={0,0,127}));
+  connect(toSpacePhasor.y, multiVariableFilter.u)
+    annotation (Line(points={{30,9},{30,-8}}, color={0,0,127}));
+  connect(multiVariableFilter.y, srfPLL.u)
+    annotation (Line(points={{30,-31},{30,-40},{38,-40}}, color={0,0,127}));
+  connect(svPWM.u, toSpacePhasorSource.y)
+    annotation (Line(points={{-40,8},{-40,-9}}, color={0,0,127}));
+  connect(toSpacePhasorSource.u, vfController.y)
+    annotation (Line(points={{-40,-32},{-40,-39}}, color={0,0,127}));
+  connect(const.y, vfController.u)
+    annotation (Line(points={{-49,-70},{-40,-70},{-40,-62}}, color={0,0,127}));
   annotation (experiment(
       Interval=1e-05,
       Tolerance=1e-06), Documentation(info="<html>
