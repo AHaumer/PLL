@@ -11,11 +11,19 @@ model ThreephaseDistorsion
     annotation (Placement(transformation(extent={{50,10},{70,30}})));
   Modelica.Electrical.Machines.SpacePhasors.Blocks.ToSpacePhasor toSpacePhasor
     annotation (Placement(transformation(extent={{10,10},{30,30}})));
+  Components.SrfPLL srfPLL(theta(fixed=true), wE=2*pi*60)
+    annotation (Placement(transformation(extent={{50,-20},{70,0}})));
+  Components.SimpledqPLL simpledqPLL
+    annotation (Placement(transformation(extent={{50,-50},{70,-30}})));
 equation
   connect(threephaseSource.y, toSpacePhasor.u)
     annotation (Line(points={{-9,0},{0,0},{0,20},{8,20}}, color={0,0,127}));
   connect(toSpacePhasor.y, basic3phasePLL.u)
     annotation (Line(points={{31,20},{48,20}}, color={0,0,127}));
+  connect(toSpacePhasor.y, srfPLL.u) annotation (Line(points={{31,20},{40,20},{
+          40,-10},{48,-10}}, color={0,0,127}));
+  connect(toSpacePhasor.y, simpledqPLL.u) annotation (Line(points={{31,20},{40,
+          20},{40,-40},{48,-40}}, color={0,0,127}));
   annotation (experiment(
       Interval=0.0001,
       Tolerance=1e-06,

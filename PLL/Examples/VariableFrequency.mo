@@ -19,8 +19,10 @@ model VariableFrequency "Source with variable Frequency"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   Modelica.Blocks.Math.Gain gain(k=2*pi)
     annotation (Placement(transformation(extent={{-40,-40},{-20,-20}})));
-  Components.SimpledqPLL simpledqPLL
+  Components.SrfPLL srfPLL1(theta(fixed=true), useOmegaInput=true)
     annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
+  Components.SimpledqPLL simpledqPLL
+    annotation (Placement(transformation(extent={{40,-80},{60,-60}})));
 equation
   connect(ramp.y, vfController.u)
     annotation (Line(points={{-59,0},{-42,0}}, color={0,0,127}));
@@ -31,8 +33,12 @@ equation
                                            color={0,0,127}));
   connect(ramp.y, gain.u) annotation (Line(points={{-59,0},{-50,0},{-50,-30},{
           -42,-30}}, color={0,0,127}));
+  connect(gain.y, srfPLL1.we) annotation (Line(points={{-19,-30},{0,-30},{0,-52},
+          {50,-52},{50,-42}}, color={0,0,127}));
+  connect(toSpacePhasor.y, srfPLL1.u) annotation (Line(points={{21,0},{30,0},{
+          30,-30},{38,-30}}, color={0,0,127}));
   connect(toSpacePhasor.y, simpledqPLL.u) annotation (Line(points={{21,0},{30,0},
-          {30,-30},{38,-30}}, color={0,0,127}));
+          {30,-70},{38,-70}}, color={0,0,127}));
   annotation (experiment(
       StopTime=1.5,
       Interval=1e-05,
